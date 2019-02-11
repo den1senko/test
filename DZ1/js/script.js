@@ -22,9 +22,11 @@ var appData = {
 
 alert(appData.budget/30);
 
+
 console.log(appData.budget);
 console.log(appData.timeData);
 console.log(appData.expenses);
 console.log(appData.optionalExpenses);
 console.log(appData.income);
 console.log(appData.savings);
+
