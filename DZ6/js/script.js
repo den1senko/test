@@ -96,7 +96,7 @@ window.addEventListener('DOMContentLoaded', function(){
         sliderItem[j].style.height = '573.5px';
     });
 
-    let deadline = '2019-02-18';
+    let deadline = '2019-03-01';
 
     function getTimeRemaining(endtime){
         let t = Date.parse(endtime) - Date.parse(new Date());
@@ -131,4 +131,48 @@ window.addEventListener('DOMContentLoaded', function(){
         }    
     }
     setClock('timer', deadline);
+
+    //calc
+    let people = document.getElementsByClassName('counter-block-input')[0],
+        days = document.getElementsByClassName('counter-block-input')[1],
+        base = document.getElementById('select'),
+        total = document.getElementById('total');
+
+    let ttl = 0,
+        sumD = 0,
+        sumP = 0;
+    
+    total.textContent = 0;
+    
+    people.addEventListener('change', function(){
+        sumP = +this.value;
+        ttl = (sumP + sumD) * 4000;
+        if(days.value == ''){
+            total.textContent = 0;
+        }
+        else{
+            total.textContent = ttl;
+        }
+    });
+
+    days.addEventListener('change', function(){
+        sumD = +this.value;
+        ttl = (sumP + sumD) * 4000;
+        if(people.value == ''){
+            total.textContent = 0;
+        }
+        else{
+            total.textContent = ttl;
+        }
+    });
+
+    base.addEventListener('change', function(){
+        if(people.value == '' || days.value == ''){
+            total.textContent = 0;
+        }
+        else{
+            let t = ttl;
+            total.textContent = t * this.options[this.selectedIndex].value;
+        }
+    });
 });
